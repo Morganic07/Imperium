@@ -1,0 +1,440 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html, body {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+/* HUD gauche */
+#hud-left {
+  position: fixed;
+  top: 17px;
+  left: 20px;
+  width: 200px;
+  min-height: 80px;
+  background: url('sources/TextBox (3).png') no-repeat center/contain; /* <-- ici */
+  padding: 17px 30px;
+  color: #222;
+}
+
+
+.hud-block {
+  margin-bottom: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  
+}
+
+/* HUD droite */
+#hud-right {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 250px;
+  height: 90vh;
+  overflow-y: auto;
+  background: transparent;
+  padding: 15px;
+}
+
+/* Animation de particules lors du clic */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 8px;
+  height: 8px;
+  background: #f7f0b6; /* couleur par défaut, surchargée en JS */
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: particleMove 600ms ease-out forwards;
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+#hud-right h2 {
+  text-align: center;
+}
+
+#hud-right button {
+  font-family: "Pixelify Sans", sans-serif;
+
+  font-size: 14px;
+}
+
+#hud-left-text {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.dieu-avatar {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.dieu {
+  background: url('sources/TextBoxLong1.png') no-repeat center top;
+  background-size: 100% 100%;
+  padding: 40px; /* réduit le padding top si besoin */
+  margin-bottom: 10px;
+}
+
+.dieu button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+ border-radius: 5px;
+ border-color: #e3cd6b;
+ background-color: #fbfdf7 ;
+}
+.dieu button:active {
+  filter: brightness(0.7);
+  transition: filter 0.1s;
+}
+
+
+.dieu-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10%;
+  margin: -10px; /* Enlève toutes les marges */
+  display: block;
+}
+
+.dieu-header {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espace entre l'image et le texte */
+  margin-bottom: 4px;
+}
+
+/* Zone principale de jeu */
+#game-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #cfdebd; /* vert pâle par défaut */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#map {
+  position: relative;
+  width: 900px;      /* Taille fixe pour commencer */
+  height: 600px;
+  background: url('sources/map/map3.png') center center/cover no-repeat;
+  box-shadow: 0 0 20px #0008;
+  border-radius: 20px;
+}
+
+
+/* Bouton de clic (arbre) */
+#click-area {
+  position: absolute;
+  left: 52%;
+  top: 48%;
+  translate: -50% -50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+#click-area:active {
+  transform: scale(0.95);
+}
+
+
+/* Image du temple dans le bouton */
+#click-area img {
+  width: 150px;
+  height: auto;
+  display: block;
+  pointer-events: none; /* Pour que le clic soit sur le bouton, pas l'image */
+  user-select: none;
+}
+
+
+
+
+#ble-fields {
+  position: absolute;
+  left: 50%;      
+  bottom: 1.7%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: -2px;
+  z-index: 3;
+  height: 80px;
+}
+
+.ble-champ {
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+#vigne-fields {
+  position: absolute;
+  left: 55%; /* Place le premier champ de vigne où tu veux */
+  bottom: 13%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: -8px;
+  z-index: 3;
+  height: 80px;
+}
+
+.vigne-champ {
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+#venus-buildings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.venus-batiment {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+#neptune-buildings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+.neptune-batiment {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+#faunus-buildings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+.faunus-batiment {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+
+#mars-buildings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+.mars-batiment {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  user-select: none;
+}
+
+#bouttonInfoHistorique { 
+    position: fixed;
+    visibility: visible;
+    top: 550px;
+    left: 25px;
+    background: url('sources/TextBox (3).png') no-repeat center/cover;
+    border : none;
+    width: 160px; 
+    height: 90px;
+    /* padding: 25px 30px; ajuste pour que le texte ne touche pas les bords */
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 15px;
+    color: #222; /* adapte la couleur du texte si besoin */
+  
+}
+
+
+
+
+
+/* Ecran d'intro : overlay obscurci */
+#intro-overlay {
+  position: fixed;
+  z-index: 99999;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bulle de dialogue centrée */
+#intro-dialogue {
+  background: #e6f7c5;
+  border: 4px solid #222;
+  border-radius: 18px;
+  box-shadow: 0 0 24px #000a;
+  padding: 40px 32px 24px 32px;
+  max-width: 480px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#intro-continue {
+  margin-top: 24px;
+  padding: 10px 32px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: none;
+  background: #b6e36b;
+  color: #222;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#intro-continue:hover {
+  background: #a0d95a;
+}
+
+
+
+
+#pageInfoHistorique {
+    visibility: hidden;
+    position: fixed;
+    left: 20px; /* même valeur que #hud-left */
+    top: 250px; /* juste sous le HUD gauche */
+    background: transparent;
+    border: none;
+    width: 280px;      /* largeur fixe adaptée à la colonne de gauche */
+    max-width: 95vw;
+    height: 450px;
+    min-height: 200px;
+    padding: 5px 0 18px 0;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 15px;
+    overflow-y: auto;
+    border-radius: 18px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#pageInfoHistorique,
+#historique-dieux-list {
+  overflow-x: hidden;
+}
+
+#historique-dieux-list {
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+
+.dieu-historique {
+  display: flex;
+  flex-direction: column;
+  background: url('sources/TextBoxLong1.png') no-repeat center top;
+  background-size: 100% 100%;
+  border-radius: 12px;
+  padding: 16px 12px;
+  width: 92%;
+  max-width: 340px;
+  margin-bottom: 12px;
+}
+
+.dieu-historique-ligne-haut {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.dieu-historique img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 10%;
+  background: #fbfdf7;
+  border: 2px solid #e3cd6b;
+}
+
+.dieu-historique-nom {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 16px;
+  position : center;
+}
+
+.dieu-historique-desc {
+  font-size: 0.98em;
+  color: #222;
+  margin-top: 10px;
+  padding-left: 2px;
+  margin-left: 30px;
+  margin-right: 30px;
+}

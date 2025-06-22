@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMPERIUM</title>
+  <link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+
+<div id="game-container">
+  <div id="map">
+
+
+    <!-- Bâtiments (affichés/débloqués dynamiquement) -->
+    <div id="ble-fields"></div>
+
+    <div id="vigne-fields"></div>
+
+    <div id="venus-buildings"></div>
+
+    <div id="neptune-buildings"></div>
+
+    <div id="faunus-buildings"></div>
+
+
+    <div id="mars-buildings"></div>
+
+    <button id="click-area">
+      <img id="temple-img" src="sources\buildings\TEMPLE128-1.png.png" alt="Temple" />
+    </button>
+  </div>
+</div>
+
+  <!-- HUD Gauche : points et temps -->
+  <div id="hud-left">
+    <div class="hud-block">
+      <strong>Points :</strong> <span id="points">0</span>
+    </div>
+      <div class="hud-block">
+    <strong>Points/clic :</strong> <span id="points-par-clic">1</span>
+  </div>
+  <div class="hud-block">
+    <strong>Points/sec :</strong> <span id="points-par-seconde">0</span>
+  </div>
+
+  </div>
+
+  <!-- HUD Droite : dieux -->
+  <div id="hud-right">
+    <h2>Dieux</h2>
+    <div id="dieuxContainer"></div>
+  </div>
+
+  <button id="bouttonInfoHistorique" type="button"> <strong> Voir les Dieux </strong>  </button>
+
+ <div id="pageInfoHistorique">
+  <div id="historique-dieux-list"></div>
+</div>
+
+
+  <div id="intro-overlay">
+  <div id="intro-dialogue">
+    <p id="intro-text">Carthage a lancé une attaque sur Rome menée par le général Hannibal Barca qui a intimidé la ville. 
+      Les habitants ont quitté la ville et ont perdu leur piété : plus personne ne prient les dieux. <br> <br>
+      Jupiter fait appel à vous pour régler la situation. Vous décidez de prier les dieux afin d'obtenir 
+      leur faveur et rebâtir la  cité. Chaque prière vous rapporte des points. Les dieux peuvent vous aider de 
+      deux façons : ils peuvent vous bénir et dans ce cas la chacunes de vos prières vous rapportera plus de 
+      point. Ou ils peuvent également se joindre à vos côté et prier lorsque vous êtes absent.</p>
+    <button id="intro-continue">Continuer</button>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
